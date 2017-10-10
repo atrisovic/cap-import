@@ -13,7 +13,7 @@ def verify_url(url):
     pattern = r"(?P<host>github\.com|gitlab\.cern\.ch)\/(?P<user>[a-zA-Z][\w.-]+)\/(?P<repo>[\w.-]+)"
     match = re.search(pattern, url, re.IGNORECASE)
     if not match:
-        return "The URL cannot be parsed, please provide valid URL."
+        raise ValueError("The URL cannot be parsed, please provide valid URL.")
     p = match.groupdict()
     archive = ARCHIVE_GLAB if "gitlab" in p['host'] else ARCHIVE_GHUB
     if p['repo'].endswith(".git"): p['repo'] = p['repo'][:-4]
