@@ -2,6 +2,8 @@ import os
 import re
 import urllib
 import argparse
+import gitlab
+
 
 PROTOCOL = "https:/"
 ARCHIVE_GLAB = "repository/master/archive.tar.gz"
@@ -39,9 +41,24 @@ def parse_args():
     return parser.parse_args()
 
 
+def archive_gitlab(token, repo):
+    """ download and archive repo via python-gitlab """
+    gl = gitlab.Gitlab('https://gitlab.cern.ch', token, api_version=4)
+    repo = gl.projects.get(repo)
+    tgz = repo.repository_archive()
+    with open("archive.tar.gz", "w") as f:
+        f.write(tgz)
+
+    # Labels
+    # labels = project.labels.list()
+    # label = project.labels.get(label_name)
+    # label = project.labels.create({'name': 'foo', 'color': '#8899aa'})
+
+
 def main():
     args = parse_args()
-    download_repo(args.url, args.token, args.destination)
+    # download_repo(args.url, args.token, args.destination)
+    archive_gitlab(args.token, args.url)
 
 
 if __name__ == '__main__':
