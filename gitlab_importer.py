@@ -1,8 +1,8 @@
 import gitlab
-from importer import Importer
+from base_importer import BaseImporter
 
 
-class GitlabImporter(Importer):
+class GitlabImporter(BaseImporter):
 
     def __init__(self, repo, token=None):
         self.repo = repo

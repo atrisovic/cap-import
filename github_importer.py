@@ -1,10 +1,9 @@
-import os
 import urllib
 from github import Github
-from importer import Importer
+from base_importer import BaseImporter
 
 
-class GithubImporter(Importer):
+class GithubImporter(BaseImporter):
 
     def __init__(self, repo, token=None):
         self.repo = repo
@@ -16,4 +15,4 @@ class GithubImporter(Importer):
         # self.repo format: username/repository
         repo = gh.get_repo(self.repo)
         link = repo.get_archive_link("tarball")
-        return urllib.urlretrieve(link, os.path.join(os.getcwd(), "archive.tar.gz"))
+        return urllib.request.urlopen(link)
