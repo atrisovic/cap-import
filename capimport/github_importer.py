@@ -13,7 +13,6 @@ class GithubImporter(Importer):
     def archive_repository(self):
         """ download and archive repo via PyGithub """
         gh = Github(self.token)
-
         # self.repo format: username/repository
         repo = gh.get_repo(self.repo)
         link = repo.get_archive_link("tarball")
