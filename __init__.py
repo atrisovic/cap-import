@@ -27,5 +27,5 @@
 from importer import Importer
 
 
-def get_importer(url, token=None):
-    return Importer.factory(url, token)
+def get_importer(url, ref=None, token=None):
+    return Importer.factory(url, ref, token)
