@@ -1,4 +1,5 @@
 from unittest import TestCase
+from ..utils import parse_url
 
 
 class TestParseUrl(TestCase):
