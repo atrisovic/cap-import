@@ -2,7 +2,7 @@ certifi==2017.7.27.1
 chardet==3.0.4
 idna==2.6
 PyGithub==1.35
-PyJWT==1.5.3
+PyJWT==2.4.0
 python-gitlab==1.0.2
 requests==2.18.4
 six==1.11.0
